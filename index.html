@@ -54,7 +54,7 @@ section{padding:90px 7%;position:relative}
 .cards{max-width:100%;margin-left:auto;margin-right:auto;box-sizing:border-box;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .card{background:rgba(255,250,241,.8);border:1px solid #ddd3bd;padding:35px 25px;text-align:center}
 .icon{font-size:30px;color:var(--olive);margin-bottom:10px}
-.card h3{font-size:22px;margin:6px}.card p{line-height:1.7;font-size:14px;color:#666}
+.card h3{font-size:clamp(22px, 5vw, 32px);margin:6px}.card p{line-height:1.7;font-size:14px;color:#666}
 .colors{display:flex;justify-content:center;gap:8px;margin-top:12px}.swatch{width:50px;height:50px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #aaa}.burgundy{background:#5A1F30}.garnet{background:#7A1E33}.olive{background:#435525}.moss{background:#4F5A32}.ivory{background:#F8F2E6}
 .travel{background:var(--paper)}
 .travel-grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.travel .card{text-align:left}
@@ -63,9 +63,9 @@ section{padding:90px 7%;position:relative}
 .gifts{background:#f1eadb}.giftbox{max-width:900px;margin:auto;text-align:center}.gift-options{display:flex;justify-content:center;gap:18px}.gift-bpi{background:var(--paper);border:1px solid #ddd3bd;padding:25px 50px}.gift strong{display:block;margin:8px}.gift-maya{background:var(--paper);border:1px solid #ddd3bd;padding:25px 50px}.gift strong{display:block;margin:8px}
 .faq{max-width:900px;margin:auto}.faq-item{border-bottom:1px solid #d5cbb7}.faq-q{padding:18px 4px;cursor:pointer;display:flex;justify-content:space-between}.faq-a{display:none;padding:0 4px 18px;color:#666;line-height:1.6}
 .countdown{background:var(--olive-dark);color:#fff;text-align:center;padding:55px 20px}.timer{display:flex;justify-content:center;gap:45px;margin-top:20px}.time strong{font:50px "Cormorant Garamond";display:block}.time span{font-size:9px;letter-spacing:2px}
-footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{font-family:"Great Vibes";font-size:52px;color:var(--magenta);margin:10px}
+footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{font-family:"Great Vibes";font-size: clamp(32px, 8vw, 56px);color:var(--magenta);margin:10px}
 @media(max-width:800px){
- nav{padding:12px 18px}.navlinks{display:none}.hero{min-height:850px}.hero-content{text-align:center}.hero h1{font-size:70px}
+ nav{padding:12px 18px}.navlinks{display:none}.hero{min-height:850px}.hero-content{text-align:center}.hero h1{font-size: clamp(48px, 15vw, 70px);}
  section{padding:65px 5%}.story-wrap{grid-template-columns:1fr}.timeline{grid-template-columns:1fr 1fr;gap:30px}.timeline:before{display:none}
  .cards,.travel-grid{grid-template-columns:1fr}.rsvp-wrap{grid-template-columns:1fr}.rsvp-copy{padding:40px 25px}.formbox{padding:28px 20px}.row{grid-template-columns:1fr}
  .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:180px}.gallery div:first-child{grid-row:span 1}.gallery div:nth-child(4){grid-column:auto}.gift-options{flex-direction:column}.timer{gap:18px}.time strong{font-size:38px}
@@ -115,6 +115,8 @@ footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{fon
 /* EXPANDING GALLERY */
 
 .color-gallery {
+  width: 100%;
+  max-width: 100%;
   max-height: 0;
   overflow: hidden;
   opacity: 0;
@@ -124,6 +126,13 @@ footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{fon
     margin-top .8s ease;
 
   margin-top: 0;
+}
+
+.color-gallery img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 .color-gallery.active {
@@ -317,7 +326,8 @@ footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{fon
 
 .rsvp-button {
     width: 100%;
-    border: none;
+    max-width: 100%
+	border: none;
 
     background: #7A1E33;
     color: #F8F2E6;
@@ -738,6 +748,209 @@ footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{fon
         color: white;
     }
 }
+
+/* =========================================
+   MOBILE / SAMSUNG GALAXY Z FLIP 6
+   ========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+section {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* -----------------------------------------
+   MOBILE GENERAL
+   ----------------------------------------- */
+
+@media screen and (max-width: 800px) {
+
+    .container,
+    .section-container,
+    .hero-content,
+    .rsvp-container,
+    .story-wrap,
+    .gallery-grid {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    section {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+        max-width: 100%;
+    }
+
+}
+
+/* -----------------------------------------
+   NARROW PHONES
+   Galaxy Z Flip cover + narrow devices
+   ----------------------------------------- */
+
+@media screen and (max-width: 420px) {
+
+    section {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .hero {
+        min-height: 760px;
+    }
+
+    .hero h1 {
+        font-size: clamp(48px, 14vw, 70px);
+        line-height: 0.95;
+    }
+
+    .hero-content {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .rsvp-container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+	
+	.mobile-menu {
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-width: 100vw;
+    }
+
+    .mobile-menu a {
+        display: block;
+        width: 100%;
+        padding: 16px 20px;
+    }
+
+}
+
+/* -----------------------------------------
+   VERY NARROW SCREEN
+   ----------------------------------------- */
+
+@media screen and (max-width: 360px) {
+
+    section {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .hero h1 {
+        font-size: 46px;
+    }
+
+    .hero {
+        min-height: 720px;
+    }
+
+    button,
+    input,
+    select {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .rsvp-container {
+        display: block !important;
+        width: 100%;
+    }
+
+    .rsvp-intro,
+    .rsvp-form {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .rsvp-intro {
+        margin-bottom: 40px;
+    }
+	
+	.invitation-card {
+        width: 100%;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 28px 20px;
+    }
+	
+	.mobile-menu {
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-width: 100vw;
+    }
+
+    .mobile-menu a {
+        display: block;
+        width: 100%;
+        padding: 16px 20px;
+    }
+}
+
+html,
+body {
+    overflow-x: hidden;
+	padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+}
+img,
+video,
+iframe {
+    max-width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+}
+
+@media screen and (max-width: 380px) {
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
 </style>
 </head>
 <body>
@@ -1055,7 +1268,7 @@ footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{fon
 </footer>
 
 <script>
-const weddingDate = new Date("June 5, 2027 16:00:00").getTime();
+const weddingDate = new Date("June 5, 2027 15:30:00").getTime();
 const music = document.getElementById("weddingMusic");
 const musicButton = document.getElementById("musicButton");
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzs6AZcKYF1EnLppCG4npIqyf97ungssyKR_DmgDBkfoSQSf8IODQuG_ZOGX_tVyU5Zlg/exec";
