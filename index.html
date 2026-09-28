@@ -1901,22 +1901,43 @@
 
         try {
 
-            await fetch(
-                GOOGLE_SCRIPT_URL,
-                {
-                    method: "POST",
-
-                    mode: "no-cors",
-
-                    headers: {
-                        "Content-Type":
-                            "text/plain;charset=utf-8"
-                    },
-
-                    body: JSON.stringify(data)
-                }
+            /*
+             * Send the RSVP in the background.
+             * Google Apps Script can take a few seconds to finish writing
+             * to Google Sheets, so the website should not wait for the
+             * spreadsheet response before showing the confirmation.
+             */
+            const payload = JSON.stringify(data);
+            const blob = new Blob(
+                [payload],
+                { type: "text/plain;charset=utf-8" }
             );
 
+            let queued = false;
+
+            if (navigator.sendBeacon) {
+                queued = navigator.sendBeacon(
+                    GOOGLE_SCRIPT_URL,
+                    blob
+                );
+            }
+
+            /* Fallback for browsers where sendBeacon is unavailable/full. */
+            if (!queued) {
+                fetch(GOOGLE_SCRIPT_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: {
+                        "Content-Type": "text/plain;charset=utf-8"
+                    },
+                    body: payload,
+                    keepalive: true
+                }).catch(error => {
+                    console.error("Background RSVP submission failed:", error);
+                });
+            }
+
+            /* Do not wait for Google Sheets. */
             showSuccess(attending);
 
         } catch (error) {
