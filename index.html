@@ -744,7 +744,7 @@ footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{fon
 
 <script>
 const weddingDate = new Date("June 5, 2027 16:00:00").getTime();
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyqtkxrrBE5H4WTLzZfssVST2QSb9n75jK9SZlJeW-aNJRrBqTXqfslw_bzOAyU_7oH8w/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyK-lI1lT3pJvLwKw1RNj5xwLMxowRivKQ8HnqgsUO1YGa0nbua-y6xlnktoVmcug_NBQ/exec";
 const galleries = { 
 
   burgundy: {
@@ -793,52 +793,45 @@ const galleries = {
   }
 
 };
+/* =========================
+   RSVP
+========================= */
 
 let currentGuest = null;
 
-/* FIND INVITATION */
+
+/* =========================
+   FIND INVITATION
+========================= */
 
 function findInvitation() {
 
-    const code = document
-        .getElementById("inviteCode")
-        .value
-        .trim()
-        .toUpperCase();
+    const codeInput =
+        document.getElementById("inviteCode");
 
-    const error = document.getElementById("lookupError");
+    const error =
+        document.getElementById("lookupError");
+
+    const code =
+        codeInput.value.trim().toUpperCase();
 
     if (!code) {
-        error.textContent = "Please enter your invitation code.";
+        error.textContent =
+            "Please enter your invitation code.";
         return;
     }
 
-    error.textContent = "Looking up your invitation...";
+    error.textContent =
+        "Looking up your invitation...";
 
     const callbackName =
         "guestLookup_" + Date.now();
 
     window[callbackName] = function(data) {
 
+        console.log("Google response:", data);
+
         delete window[callbackName];
-
-        if (!data.success) {
-
-            error.textContent =
-                "We couldn't find that invitation code.";
-
-            return;
-        }
-
-        // Only this guest's information is returned
-        currentGuest = {
-            name: data.guest,
-            seats: data.seats
-        };
-
-        error.textContent = "";
-
-        showInvitation();
 
         const script =
             document.getElementById(callbackName);
@@ -846,20 +839,49 @@ function findInvitation() {
         if (script) {
             script.remove();
         }
+
+        if (!data || !data.success) {
+
+            error.textContent =
+                data && data.error
+                    ? data.error
+                    : "Invitation code not found.";
+
+            return;
+        }
+
+        currentGuest = {
+            name: data.guest,
+            seats: Number(data.seats)
+        };
+
+        error.textContent = "";
+
+        showInvitation();
     };
 
-    const script = document.createElement("script");
+    const script =
+        document.createElement("script");
 
     script.id = callbackName;
 
     script.src =
         GOOGLE_SCRIPT_URL +
         "?action=lookup" +
-        "&code=" + encodeURIComponent(code) +
-        "&callback=" + callbackName;
+        "&code=" +
+        encodeURIComponent(code) +
+        "&callback=" +
+        callbackName;
+
+    console.log("Looking up:", script.src);
 
     document.body.appendChild(script);
 }
+
+
+/* =========================
+   SHOW INVITATION
+========================= */
 
 function showInvitation() {
 
@@ -880,17 +902,21 @@ function showInvitation() {
     document.getElementById("seatMessage")
         .textContent =
         currentGuest.seats === 1
-        ? "This invitation is reserved for you."
-        : "These seats have been reserved in your honor.";
+            ? "This invitation is reserved for you."
+            : "These seats have been reserved in your honor.";
 }
 
 
-/* ATTENDANCE */
+/* =========================
+   ATTENDANCE
+========================= */
 
 function attendanceChanged() {
 
     const selected =
-        document.querySelector('input[name="attendance"]:checked');
+        document.querySelector(
+            'input[name="attendance"]:checked'
+        );
 
     const guestNames =
         document.getElementById("guestNames");
@@ -898,24 +924,28 @@ function attendanceChanged() {
     const confirmButton =
         document.getElementById("confirmButton");
 
-
     if (!selected) {
         return;
     }
 
-
     confirmButton.disabled = false;
 
     if (selected.value === "yes") {
+
         guestNames.classList.remove("hidden");
+
         createGuestFields();
+
     } else {
+
         guestNames.classList.add("hidden");
     }
 }
 
 
-/* CREATE GUEST FIELDS */
+/* =========================
+   CREATE GUEST FIELDS
+========================= */
 
 function createGuestFields() {
 
@@ -924,19 +954,15 @@ function createGuestFields() {
 
     container.innerHTML = "";
 
-    /*
-       First guest is the person
-       who owns the invitation.
-
-       Therefore we only ask for
-       the additional guests.
-    */
-
     const plusOnes =
         currentGuest.seats - 1;
 
+    for (
+        let i = 1;
+        i <= plusOnes;
+        i++
+    ) {
 
-    for (let i = 1; i <= plusOnes; i++) {
         const wrapper =
             document.createElement("div");
 
@@ -962,12 +988,15 @@ function createGuestFields() {
 
         wrapper.appendChild(label);
         wrapper.appendChild(input);
+
         container.appendChild(wrapper);
     }
 }
 
 
-/* SUBMIT */
+/* =========================
+   SUBMIT RSVP
+========================= */
 
 async function submitRSVP() {
 
@@ -976,7 +1005,7 @@ async function submitRSVP() {
             'input[name="attendance"]:checked'
         );
 
-    if (!selected) {
+    if (!selected || !currentGuest) {
         return;
     }
 
@@ -997,60 +1026,70 @@ async function submitRSVP() {
             const name =
                 input.value.trim();
 
-
             if (!name) {
+
                 alert(
                     "Please enter the name of each guest."
                 );
-				
+
                 input.focus();
 
                 return;
             }
 
             guestNames.push(name);
-
         }
-
     }
-	
-	const code =
+
+    const code =
         document.getElementById("inviteCode")
             .value
             .trim()
             .toUpperCase();
-			
-	const data = {
+
+    const data = {
+
         code: code,
+
         guest: currentGuest.name,
+
         seats: currentGuest.seats,
+
         attending: attending,
+
         guestNames: guestNames
     };
-	
-	const button =
+
+    console.log("Submitting RSVP:", data);
+
+    const button =
         document.getElementById("confirmButton");
-		
-		button.disabled = true;
+
+    button.disabled = true;
 
     button.textContent =
         "SENDING...";
 
     try {
+
         await fetch(
             GOOGLE_SCRIPT_URL,
             {
                 method: "POST",
+
                 mode: "no-cors",
+
                 headers: {
                     "Content-Type":
                         "text/plain;charset=utf-8"
                 },
+
                 body: JSON.stringify(data)
             }
         );
 
         showSuccess(attending);
+
     } catch (error) {
 
         console.error(error);
@@ -1063,59 +1102,26 @@ async function submitRSVP() {
 
         button.textContent =
             "CONFIRM RSVP →";
-
     }
 }
 
-    /*
-       At this point the RSVP data is:
 
-       currentGuest.name
-       currentGuest.seats
-       attending
-       guestNames
-
-       This is where we will connect
-       Google Sheets.
-    */
-
-    console.log({
-
-        invitationCode:
-            document.getElementById("inviteCode").value,
-
-        guest:
-            currentGuest.name,
-
-        seats:
-            currentGuest.seats,
-
-        attending:
-            attending,
-
-        guestNames:
-            guestNames
-
-    });
-
-    showSuccess(attending);
-
-}
-/* SUCCESS */
+/* =========================
+   SUCCESS
+========================= */
 
 function showSuccess(attending) {
 
-    document.getElementById("invitationStep")
+    document
+        .getElementById("invitationStep")
         .classList.add("hidden");
 
-
-    document.getElementById("successStep")
+    document
+        .getElementById("successStep")
         .classList.remove("hidden");
-
 
     const text =
         document.getElementById("successText");
-
 
     if (attending) {
 
@@ -1126,10 +1132,9 @@ function showSuccess(attending) {
 
         text.textContent =
             "Thank you for letting us know. You will be missed!";
-
     }
-
 }
+
 function updateCountdown() {
     const now = new Date().getTime();
     const distance = weddingDate - now;
