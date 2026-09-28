@@ -900,10 +900,19 @@ function showInvitation() {
         .textContent = currentGuest.seats;
 
     document.getElementById("seatMessage")
-        .textContent =
-        currentGuest.seats === 1
+        .textContent =currentGuest.seats === 1
             ? "This invitation is reserved for you."
             : "These seats have been reserved in your honor.";
+
+	const guestNames = document.getElementById("guestNames");
+
+    if (currentGuest.seats <= 1) {
+        guestNames.classList.add("hidden");
+        document.getElementById("guestFields").innerHTML = "";
+    } else {
+        guestNames.classList.remove("hidden");
+        createGuestFields();
+    }	
 }
 
 
@@ -930,15 +939,13 @@ function attendanceChanged() {
 
     confirmButton.disabled = false;
 
-    if (selected.value === "yes") {
-
+    if (currentGuest && currentGuest.seats > 1) {
         guestNames.classList.remove("hidden");
-
         createGuestFields();
 
     } else {
-
         guestNames.classList.add("hidden");
+		document.getElementById("guestFields").innerHTML = "";
     }
 }
 
