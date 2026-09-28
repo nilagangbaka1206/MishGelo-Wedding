@@ -811,6 +811,8 @@ footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{fon
 
 <script>
 const weddingDate = new Date("June 5, 2027 16:00:00").getTime();
+const music = document.getElementById("weddingMusic");
+const musicButton = document.getElementById("musicButton");
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzs6AZcKYF1EnLppCG4npIqyf97ungssyKR_DmgDBkfoSQSf8IODQuG_ZOGX_tVyU5Zlg/exec";
 const galleries = { 
 
@@ -1295,7 +1297,28 @@ function closeGallery() {
 		block: "center"
 	});
   }, 400);
+}
 
+function toggleMusic() {
+
+    if (music.paused) {
+
+        music.play()
+            .then(() => {
+                musicButton.classList.add("playing");
+                musicButton.innerHTML = "❚❚";
+            })
+            .catch(error => {
+                console.log("Music could not play:", error);
+            });
+
+    } else {
+
+        music.pause();
+
+        musicButton.classList.remove("playing");
+        musicButton.innerHTML = "♫";
+    }
 }
 </script>
 </body>
