@@ -496,12 +496,77 @@ footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{fon
         flex-direction: column;
         gap: 15px;
     }
+}
+
+/* MUSIC BUTTON */
+
+.music-player {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+}
+
+#musicButton {
+    width: 52px;
+    height: 52px;
+
+    border-radius: 50%;
+    border: 1px solid #d8cdb8;
+
+    background: #f8f3e9;
+    color: #303b21;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,.15);
+
+    transition:
+        transform .25s ease,
+        background .25s ease;
+}
+
+#musicButton:hover {
+    transform: scale(1.08);
+}
+
+#musicButton.playing {
+    background: #5A1F30;
+    color: white;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .music-player {
+        right: 15px;
+        bottom: 75px;
+    }
+
+    #musicButton {
+        width: 48px;
+        height: 48px;
+    }
 
 }
 </style>
 </head>
 <body>
+<div class="music-player">
 
+    <button id="musicButton" onclick="toggleMusic()">
+        ♫
+    </button>
+
+    <audio id="weddingMusic" loop>
+        <source src="./Media/Be With You.mp3" type="audio/mpeg">
+    </audio>
+
+</div>
 <nav>
   <a href="#home" class="logo">A | M</a>
   <div class="navlinks">
