@@ -744,7 +744,7 @@ footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{fon
 
 <script>
 const weddingDate = new Date("June 5, 2027 16:00:00").getTime();
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyvxluMqaDAa5OlK9cckPm8b1t3L-Nd6e1K9nTGNn8Z_ZxivZSl4n11LPK0tzPV_HX84g/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyqtkxrrBE5H4WTLzZfssVST2QSb9n75jK9SZlJeW-aNJRrBqTXqfslw_bzOAyU_7oH8w/exec";
 const galleries = { 
 
   burgundy: {
@@ -794,89 +794,94 @@ const galleries = {
 
 };
 
-const guests = {
-
-    "ANG001": {
-        name: "Juan Dela Cruz",
-        seats: 2
-    },
-
-    "ANG002": {
-        name: "Maria Santos",
-        seats: 1
-    },
-
-    "ANG003": {
-        name: "Pedro Cruz",
-        seats: 4
-    },
-
-    "ANG004": {
-        name: "Ana Reyes",
-        seats: 1
-    },
-
-    "ANG005": {
-        name: "Carlos Garcia",
-        seats: 3
-    }
-
-};
-
 let currentGuest = null;
 
 /* FIND INVITATION */
 
 function findInvitation() {
-    const codeInput =
-        document.getElementById("inviteCode");
-    const code =
-        codeInput.value.trim().toUpperCase();
-    const error =
-        document.getElementById("lookupError");
+
+    const code = document
+        .getElementById("inviteCode")
+        .value
+        .trim()
+        .toUpperCase();
+
+    const error = document.getElementById("lookupError");
 
     if (!code) {
-        error.textContent =
-            "Please enter your invitation code.";
+        error.textContent = "Please enter your invitation code.";
         return;
     }
 
+    error.textContent = "Looking up your invitation...";
 
-    const guest = guests[code];
+    const callbackName =
+        "guestLookup_" + Date.now();
 
-    if (!guest) {
-        error.textContent =
-            "We couldn't find that invitation code. Please check and try again.";
-        return;
-    }
+    window[callbackName] = function(data) {
 
-    currentGuest = guest;
+        delete window[callbackName];
 
-    error.textContent = "";
+        if (!data.success) {
 
-    document.getElementById("lookupStep")
+            error.textContent =
+                "We couldn't find that invitation code.";
+
+            return;
+        }
+
+        // Only this guest's information is returned
+        currentGuest = {
+            name: data.guest,
+            seats: data.seats
+        };
+
+        error.textContent = "";
+
+        showInvitation();
+
+        const script =
+            document.getElementById(callbackName);
+
+        if (script) {
+            script.remove();
+        }
+    };
+
+    const script = document.createElement("script");
+
+    script.id = callbackName;
+
+    script.src =
+        GOOGLE_SCRIPT_URL +
+        "?action=lookup" +
+        "&code=" + encodeURIComponent(code) +
+        "&callback=" + callbackName;
+
+    document.body.appendChild(script);
+}
+
+function showInvitation() {
+
+    document
+        .getElementById("lookupStep")
         .classList.add("hidden");
 
-    document.getElementById("invitationStep")
+    document
+        .getElementById("invitationStep")
         .classList.remove("hidden");
 
     document.getElementById("guestName")
-        .textContent = guest.name;
+        .textContent = currentGuest.name;
 
     document.getElementById("seatNumber")
-        .textContent = guest.seats;
+        .textContent = currentGuest.seats;
 
-    if (guest.seats === 1) {
-
-        document.getElementById("seatMessage")
-            .textContent =
-            "This invitation is reserved for you.";
-    } else {
-
-        document.getElementById("seatMessage")
-            .textContent =
-            "These seats have been reserved in your honor.";
-    }
+    document.getElementById("seatMessage")
+        .textContent =
+        currentGuest.seats === 1
+        ? "This invitation is reserved for you."
+        : "These seats have been reserved in your honor.";
 }
 
 
