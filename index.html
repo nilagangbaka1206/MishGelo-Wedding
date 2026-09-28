@@ -872,43 +872,32 @@ let currentGuest = null;
    MUSIC
 ========================= */
 let musicPlaying = false;
+let musicStarted = false;
 
-window.addEventListener("load", function () {
+music.volume = 0.5;
 
-    music.volume = 0.5;
-
+// Try autoplay when page loads
+window.addEventListener("load", () => {
     music.play()
         .then(() => {
 
             musicPlaying = true;
+            musicStarted = true;
+
             musicButton.classList.add("playing");
             musicButton.innerHTML = "❚❚";
         })
         .catch(() => {
-
-            // Browser blocked autoplay.
-            // We'll try again after the user's first interaction.
-
             console.log("Autoplay blocked by browser.");
         });
 });
 
-
-// Start music after the user's first interaction
-document.addEventListener("click", function startMusic() {
-
-    if (!musicPlaying) {
-
-        music.play()
-            .then(() => {
-
-                musicPlaying = true;
-                musicButton.classList.add("playing");
-                musicButton.innerHTML = "❚❚";
-            })
-            .catch(() => {});
-    }
-}, { once: true });
+// First interaction with the page
+document.addEventListener(
+    "pointerdown",
+    startMusicAfterInteraction,
+    { once: true }
+);
 
 
 /* =========================
@@ -1341,20 +1330,35 @@ function closeGallery() {
   }, 400);
 }
 
+// Try to start music after the first user interaction
+function startMusicAfterInteraction() {
+
+    if (musicStarted || !music.paused) {
+        return;
+    }
+    music.play()
+        .then(() => {
+            musicPlaying = true;
+            musicStarted = true;
+
+            musicButton.classList.add("playing");
+            musicButton.innerHTML = "❚❚";
+        })
+        .catch(() => {
+            console.log("Music still blocked.");
+        });
+}
+
 // Music button
 function toggleMusic() {
-
     if (music.paused) {
-
         music.play()
             .then(() => {
-
                 musicPlaying = true;
+                musicStarted = true;
+
                 musicButton.classList.add("playing");
                 musicButton.innerHTML = "❚❚";
-            })
-            .catch(error => {
-                console.log("Unable to play music:", error);
             });
 
     } else {
