@@ -744,7 +744,7 @@ footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{fon
 
 <script>
 const weddingDate = new Date("June 5, 2027 16:00:00").getTime();
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyK-lI1lT3pJvLwKw1RNj5xwLMxowRivKQ8HnqgsUO1YGa0nbua-y6xlnktoVmcug_NBQ/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyK-lI1lT3pJvLwKw1RNj5xwLMxowRivKQ8HnqgsUO1YGa0nbua-y6xlnktoVmcug_NBQ/exec";";
 const galleries = { 
 
   burgundy: {
@@ -1005,7 +1005,8 @@ async function submitRSVP() {
             'input[name="attendance"]:checked'
         );
 
-    if (!selected || !currentGuest) {
+    if (!selected) {
+        alert("Please select whether you will attend.");
         return;
     }
 
@@ -1041,34 +1042,32 @@ async function submitRSVP() {
         }
     }
 
+
+    // Invitation code
     const code =
         document.getElementById("inviteCode")
             .value
             .trim()
             .toUpperCase();
 
-    const data = {
-
-        code: code,
-
-        guest: currentGuest.name,
-
-        seats: currentGuest.seats,
-
-        attending: attending,
-
-        guestNames: guestNames
-    };
-
-    console.log("Submitting RSVP:", data);
 
     const button =
         document.getElementById("confirmButton");
 
     button.disabled = true;
+    button.textContent = "SENDING...";
 
-    button.textContent =
-        "SENDING...";
+
+    const data = {
+
+        code: code,
+
+        attending: attending,
+
+        guestNames: guestNames
+
+    };
+
 
     try {
 
@@ -1088,7 +1087,9 @@ async function submitRSVP() {
             }
         );
 
+
         showSuccess(attending);
+
 
     } catch (error) {
 
@@ -1104,7 +1105,6 @@ async function submitRSVP() {
             "CONFIRM RSVP →";
     }
 }
-
 
 /* =========================
    SUCCESS
