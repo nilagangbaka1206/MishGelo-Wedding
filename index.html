@@ -633,6 +633,111 @@ footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{fon
         transform: rotate(360deg);
     }
 }
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.menu-toggle {
+    display: none;
+
+    border: none;
+    background: transparent;
+    color: white;
+
+    font-size: 28px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    padding: 5px;
+}
+
+/* Mobile menu */
+.mobile-menu {
+    display: none;
+}
+
+@media (max-width: 800px) {
+
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Hide desktop navigation */
+    .navlinks {
+        display: none;
+    }
+
+    /* Hide desktop RSVP button */
+    nav .navbtn {
+        display: none;
+    }
+
+    /* Mobile dropdown */
+    .mobile-menu {
+        position: fixed;
+
+        top: 59px;
+        left: 0;
+        right: 0;
+
+        z-index: 19;
+
+        background: rgba(47,54,29,.98);
+
+        display: flex;
+        flex-direction: column;
+
+        padding: 15px 20px 25px;
+
+        transform: translateY(-120%);
+        opacity: 0;
+
+        transition:
+            transform .3s ease,
+            opacity .3s ease;
+
+        pointer-events: none;
+    }
+
+    /* Open state */
+    .mobile-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .mobile-menu a {
+        color: white;
+
+        padding: 16px 5px;
+
+        border-bottom: 1px solid rgba(255,255,255,.12);
+
+        font-size: 12px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+
+        text-align: center;
+    }
+
+    .mobile-menu a:hover {
+        color: #e5a0bb;
+    }
+
+    .mobile-menu .mobile-rsvp {
+        margin-top: 15px;
+
+        background: #7A1E33;
+
+        border: none;
+
+        padding: 15px;
+
+        color: white;
+    }
+}
 </style>
 </head>
 <body>
@@ -1039,7 +1144,36 @@ document.addEventListener(
     { once: true }
 );
 
+/* =========================
+   MOBILE MENU
+========================= */
 
+function toggleMenu() {
+
+    const menu = document.getElementById("mobileMenu");
+    const button = document.getElementById("menuToggle");
+
+    menu.classList.toggle("active");
+
+    const isOpen = menu.classList.contains("active");
+
+    button.setAttribute("aria-expanded", isOpen);
+
+    button.innerHTML = isOpen ? "×" : "☰";
+}
+
+
+function closeMenu() {
+
+    const menu = document.getElementById("mobileMenu");
+    const button = document.getElementById("menuToggle");
+
+    menu.classList.remove("active");
+
+    button.setAttribute("aria-expanded", "false");
+
+    button.innerHTML = "☰";
+}
 /* =========================
    FIND INVITATION
 ========================= */
