@@ -23,7 +23,7 @@ nav{position:fixed;z-index:20;top:0;left:0;right:0;background:rgba(47,54,29,.96)
 .navbtn{background:var(--magenta);padding:10px 17px;border-radius:2px}
 .hero{min-height:100vh;display:grid;place-items:center;position:relative;overflow:hidden;background:
 linear-gradient(90deg,rgba(30,38,18,.68),rgba(255,250,241,.14)),
-url("./Photos/web-background.png") center 40%/cover}
+url("./Photos/web-background.webp") center 40%/cover}
 .hero:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 45%,rgba(255,255,255,.18),transparent 32%)}
 .hero-content{position:relative;z-index:2;width:min(1100px,90%);color:white;text-align:right;padding-top:65px}
 .eyebrow{letter-spacing:5px;text-transform:uppercase;font-size:11px}
@@ -339,8 +339,8 @@ footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{fon
 }
 
 .rsvp-button:disabled {
-    opacity: .45;
-    cursor: not-allowed;
+    opacity: .65;
+    cursor: wait;
 }
 
 
@@ -551,6 +551,88 @@ footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{fon
         height: 48px;
     }
 }
+
+.invitation-placeholder {
+    text-align: center;
+    padding: 55px 30px 20px;
+    color: #532337;
+}
+
+/* Decorative divider */
+.floral-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.floral-divider span:not(.floral-symbol) {
+    width: 110px;
+    height: 1px;
+    background: #B99A5B;
+}
+
+.floral-symbol {
+    color: #B99A5B;
+    font-size: 26px;
+}
+
+/* Main message */
+.invitation-placeholder h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 42px;
+    font-weight: 400;
+    margin: 0 0 15px;
+}
+
+.invitation-placeholder p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #435525;
+    margin: 0 auto 40px;
+}
+
+/* A & M */
+.monogram {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 38px;
+    letter-spacing: 5px;
+    color: #B99A5B;
+    margin-bottom: 18px;
+}
+
+.monogram span {
+    font-size: 25px;
+    margin: 0 5px;
+}
+
+/* Date */
+.wedding-date {
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #435525;
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(255,255,255,.4);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+    vertical-align: -2px;
+    margin-right: 6px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
 </style>
 </head>
 <body>
@@ -649,13 +731,10 @@ footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{fon
                 celebration.
             </p>
         </div>
-
         <!-- RIGHT SIDE -->
         <div class="rsvp-form">
-
             <!-- STEP 1 -->
             <div id="lookupStep">
-
                 <label for="inviteCode">
                     INVITATION CODE
                 </label>
@@ -664,14 +743,41 @@ footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{fon
                     id="inviteCode"
                     placeholder="e.g. MG001"
                     autocomplete="off"
+					maxlength="10"
                 >
                 <button
                     type="button"
+					id="findInvitationButton"
                     class="rsvp-button"
                     onclick="findInvitation()"
                 >
                     FIND MY INVITATION →
                 </button>
+				
+				<div class="invitation-placeholder">
+
+				<div class="floral-divider">
+					<span></span>
+					<span class="floral-symbol">✿</span>
+					<span></span>
+				</div>
+
+				<h2>Your invitation awaits.</h2>
+
+				<p>
+					Please enter your invitation code above<br>
+					to view your personalized invitation details.
+				</p>
+
+				<div class="monogram">
+					A <span>&</span> M
+				</div>
+
+				<div class="wedding-date">
+					JUNE 5, 2027 &nbsp; • &nbsp; ANTIPOLO, RIZAL
+				</div>
+
+			</div>
                 <p id="lookupError" class="error-message"></p>
             </div>
 
@@ -771,10 +877,10 @@ footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{fon
   <div class="section-label">Gifts</div><h2 class="section-title">Your love and presence are the best gifts.</h2>
   <p>Should you wish to give, a monetary contribution toward our future would be warmly welcomed.</p>
   <div class="gift-options">
-   <div class="gift-bpi"><h2><strong>Bank Transfer</strong></h2><img src="./Photos/bpi.png" alt="BPI QR Code" class="qr-code"</div> 
+   <div class="gift-bpi"><h2><strong>Bank Transfer</strong></h2><img src="./Photos/bpi.png" alt="BPI QR Code" class="qr-code"></div> 
   </div>
   <div class="gift-options">  
-    <div class="gift-maya"><h2><strong>Maya</strong></h2><img src="./Photos/maya.jpg" alt="Maya QR Code" class="qr-code"</div>
+    <div class="gift-maya"><h2><strong>Maya</strong></h2><img src="./Photos/maya.jpg" alt="Maya QR Code" class="qr-code"></div>
  </div>
  </div>
 </section>
@@ -826,36 +932,36 @@ const galleries = {
   garnet: {
     title: "Garnet",
     photos: [
-      "Photos/garnet-1.jpg",
-      "Photos/garnet-2.jpg",
-      "Photos/garnet-3.jpg"
+      "./Photos/garnet-1.jpg",
+      "./Photos/garnet-2.jpg",
+      "./Photos/garnet-3.jpg"
     ]
   },
 
   olive: {
     title: "Olive Green",
     photos: [
-      "Photos/olive-1.jpg",
-      "Photos/olive-2.jpg",
-      "Photos/olive-3.jpg"
+      "./Photos/olive-1.jpg",
+      "./Photos/olive-2.jpg",
+      "./Photos/olive-3.jpg"
     ]
   },
 
   moss: {
     title: "Moss Green",
     photos: [
-      "Photos/moss-1.jpg",
-      "Photos/moss-2.jpg",
-      "Photos/moss-3.jpg"
+      "./Photos/moss-1.jpg",
+      "./Photos/moss-2.jpg",
+      "./Photos/moss-3.jpg"
     ]
   },
 
   ivory: {
     title: "Ivory",
     photos: [
-      "Photos/ivory-1.jpg",
-      "Photos/ivory-2.jpg",
-      "Photos/ivory-3.jpg"
+      "./Photos/ivory-1.jpg",
+      "./Photos/ivory-2.jpg",
+      "./Photos/ivory-3.jpg"
     ]
   }
 
@@ -910,6 +1016,9 @@ function findInvitation() {
     const error =
         document.getElementById("lookupError");
 
+    const button =
+        document.getElementById("findInvitationButton");
+
     const code =
         codeInput.value.trim().toUpperCase();
 
@@ -918,9 +1027,11 @@ function findInvitation() {
             "Please enter your invitation code.";
         return;
     }
-
-    error.textContent =
-        "Looking up your invitation...";
+	
+	// Loading state
+    button.disabled = true;
+    button.innerHTML = '<span class="loading-spinner"></span> LOOKING UP...';
+    error.textContent = "";
 
     const callbackName =
         "guestLookup_" + Date.now();
@@ -944,6 +1055,10 @@ function findInvitation() {
                 data && data.error
                     ? data.error
                     : "Invitation code not found.";
+			
+			    // Restore button
+			button.disabled = false;
+			button.textContent = "FIND MY INVITATION →";
 
             return;
         }
@@ -976,6 +1091,13 @@ function findInvitation() {
     document.body.appendChild(script);
 }
 
+// Allow pressing ENTER to find invitation
+document.getElementById("inviteCode")
+    .addEventListener("keydown", function(e) {
+        if (e.key === "Enter") {
+            findInvitation();
+        }
+    });
 
 /* =========================
    SHOW INVITATION
@@ -1147,7 +1269,6 @@ async function submitRSVP() {
         }
     }
 
-
     // Invitation code
     const code =
         document.getElementById("inviteCode")
@@ -1155,24 +1276,19 @@ async function submitRSVP() {
             .trim()
             .toUpperCase();
 
-
     const button =
         document.getElementById("confirmButton");
 
     button.disabled = true;
     button.textContent = "SENDING...";
 
-
     const data = {
 
         code: code,
-
         attending: attending,
-
         guestNames: guestNames
 
     };
-
 
     try {
 
@@ -1192,9 +1308,7 @@ async function submitRSVP() {
             }
         );
 
-
         showSuccess(attending);
-
 
     } catch (error) {
 
@@ -1297,6 +1411,8 @@ function showGallery(color) {
 
     img.src = photo;
     img.alt = selected.title + " wedding inspiration";
+	img.loading = "lazy";
+    img.decoding = "async";
 
     photos.appendChild(img);
 
