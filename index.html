@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angelo & Michelle | June 5, 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+:root{
+  --olive:#4c572d; --olive-dark:#2f361d; --magenta:#a51f57; --magenta-dark:#7d1641;
+  --cream:#f8f2e6; --paper:#fffaf1; --gold:#b69a61; --text:#303126;
+}
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--text);font-family:"DM Sans",sans-serif}
+h1,h2,h3{font-family:"Cormorant Garamond",serif;font-weight:500}
+a{text-decoration:none;color:inherit}
+nav{position:fixed;z-index:20;top:0;left:0;right:0;background:rgba(47,54,29,.96);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:14px 5%;backdrop-filter:blur(8px)}
+.logo{font-family:"Cormorant Garamond";font-size:25px;letter-spacing:4px}
+.navlinks{display:flex;gap:25px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase}
+.navlinks a:hover{color:#e5a0bb}
+.navbtn{background:var(--magenta);padding:10px 17px;border-radius:2px}
+.hero{min-height:100vh;display:grid;place-items:center;position:relative;overflow:hidden;background:
+linear-gradient(90deg,rgba(30,38,18,.68),rgba(255,250,241,.14)),
+url("./Photos/web-background.png") center 40%/cover}
+.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 45%,rgba(255,255,255,.18),transparent 32%)}
+.hero-content{position:relative;z-index:2;width:min(1100px,90%);color:white;text-align:right;padding-top:65px}
+.eyebrow{letter-spacing:5px;text-transform:uppercase;font-size:11px}
+.hero h1{font-size:clamp(65px,10vw,135px);line-height:.75;margin:25px 0;color:#fff}
+.hero h1 span{font-family:"Great Vibes";font-size:.55em;color:#e4a0ba;display:block;margin:14px}
+.date{font-size:20px;letter-spacing:5px}
+.hero .location{margin:12px 0 28px;letter-spacing:2px;font-size:12px}
+.btn{display:inline-block;background:var(--magenta);color:white;border:0;padding:14px 27px;letter-spacing:1.5px;text-transform:uppercase;font-size:11px;cursor:pointer}
+.btn:hover{background:var(--magenta-dark)}
+.scroll{margin-top:50px;font-size:10px;letter-spacing:3px;opacity:.8}
+section{padding:90px 7%;position:relative}
+.section-label{text-align:center;color:var(--gold);letter-spacing:4px;text-transform:uppercase;font-size:10px}
+.section-title{text-align:center;font-size:45px;margin:8px 0 45px;color:var(--olive-dark)}
+.story{background:var(--paper)}
+.story-wrap{max-width:1100px;margin:auto;display:grid;grid-template-columns:1fr 2fr;gap:50px;align-items:center}
+.story-copy h2{font-size:52px;line-height:.9;margin:0 0 20px}
+.story-copy p{line-height:1.8;color:#686858}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);position:relative}
+.timeline:before{content:"";height:1px;background:#cfc5ac;position:absolute;top:64px;left:6%;right:6%}
+.milestone{text-align:center;position:relative;z-index:1}
+.circle{width:105px;height:105px;border-radius:50%;margin:auto;border:6px solid var(--paper);box-shadow:0 0 0 1px #c9bea5;background-size:cover;background-position:center}
+.milestone:nth-child(1) .circle{background-image:url("https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=400&q=80")}
+.milestone:nth-child(2) .circle{background-image:url("https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=400&q=80")}
+.milestone:nth-child(3) .circle{background-image:url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=400&q=80")}
+.milestone:nth-child(4) .circle{background-image:url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=400&q=80")}
+.year{font-family:"Cormorant Garamond";font-size:25px;margin-top:14px}.caption{font-family:"Cormorant Garamond";font-style:italic;font-size:15px}
+.details{background:#f1eadb}
+.cards{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:rgba(255,250,241,.8);border:1px solid #ddd3bd;padding:35px 25px;text-align:center}
+.icon{font-size:30px;color:var(--olive);margin-bottom:10px}
+.card h3{font-size:22px;margin:6px}.card p{line-height:1.7;font-size:14px;color:#666}
+.colors{display:flex;justify-content:center;gap:8px;margin-top:12px}.swatch{width:50px;height:50px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #aaa}.burgundy{background:#5A1F30}.garnet{background:#7A1E33}.olive{background:#435525}.moss{background:#4F5A32}.ivory{background:#F8F2E6}
+.rsvp{background:var(--olive-dark);color:white}
+.rsvp-wrap{max-width:1100px;margin:auto;display:grid;grid-template-columns:.8fr 1.2fr}
+.rsvp-copy{padding:55px;background:var(--olive-dark)}
+.rsvp-copy h2{font-size:58px;line-height:.85;margin:15px 0}.rsvp-copy p{color:#d9ddc8;line-height:1.7}
+.formbox{background:var(--paper);color:var(--text);padding:45px}
+form{display:grid;gap:15px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+label{font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:600}
+input,select,textarea{width:100%;margin-top:7px;padding:12px;border:1px solid #d4cbb9;background:white;font:inherit}textarea{min-height:90px;resize:vertical}
+.radio{display:flex;gap:15px;margin-top:8px;font-size:13px}.radio label{text-transform:none;letter-spacing:0;font-weight:400}
+.form-message{display:none;padding:18px;background:#e7edd9;color:var(--olive-dark);text-align:center;margin-top:10px}
+.travel{background:var(--paper)}
+.travel-grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.travel .card{text-align:left}
+.gallery{max-width:1100px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr;grid-auto-rows:230px;gap:8px}.gallery div{background-size:cover;background-position:center}.gallery div:first-child{grid-row:span 2}.gallery div:nth-child(4){grid-column:2/4}
+.g1{background-image:url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=85")}.g2{background-image:url("https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=700&q=85")}.g3{background-image:url("https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=700&q=85")}.g4{background-image:url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=85")}.g5{background-image:url("https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=700&q=85")}
+.gifts{background:#f1eadb}.giftbox{max-width:900px;margin:auto;text-align:center}.gift-options{display:flex;justify-content:center;gap:18px}.gift-bpi{background:var(--paper);border:1px solid #ddd3bd;padding:25px 50px}.gift strong{display:block;margin:8px}.gift-maya{background:var(--paper);border:1px solid #ddd3bd;padding:25px 50px}.gift strong{display:block;margin:8px}
+.faq{max-width:900px;margin:auto}.faq-item{border-bottom:1px solid #d5cbb7}.faq-q{padding:18px 4px;cursor:pointer;display:flex;justify-content:space-between}.faq-a{display:none;padding:0 4px 18px;color:#666;line-height:1.6}
+.countdown{background:var(--olive-dark);color:#fff;text-align:center;padding:55px 20px}.timer{display:flex;justify-content:center;gap:45px;margin-top:20px}.time strong{font:50px "Cormorant Garamond";display:block}.time span{font-size:9px;letter-spacing:2px}
+footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{font-family:"Great Vibes";font-size:52px;color:var(--magenta);margin:10px}
+@media(max-width:800px){
+ nav{padding:12px 18px}.navlinks{display:none}.hero{min-height:850px}.hero-content{text-align:center}.hero h1{font-size:70px}
+ section{padding:65px 5%}.story-wrap{grid-template-columns:1fr}.timeline{grid-template-columns:1fr 1fr;gap:30px}.timeline:before{display:none}
+ .cards,.travel-grid{grid-template-columns:1fr}.rsvp-wrap{grid-template-columns:1fr}.rsvp-copy{padding:40px 25px}.formbox{padding:28px 20px}.row{grid-template-columns:1fr}
+ .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:180px}.gallery div:first-child{grid-row:span 1}.gallery div:nth-child(4){grid-column:auto}.gift-options{flex-direction:column}.timer{gap:18px}.time strong{font-size:38px}
+}
+.color-palette {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.color-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1px solid #aaa;
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.color-circle:hover {
+  transform: scale(1.08);
+  box-shadow: 0 5px 15px rgba(0,0,0,.15);
+}
+
+.burgundy {
+  background: #5A1F30;
+}
+
+.magenta {
+  background: #7A1E33;
+}
+
+.olive {
+  background: #435525;
+}
+
+.dark-olive {
+  background: #4F5A32;
+}
+
+.cream {
+  background: #F4EFE3;
+}
+
+
+/* EXPANDING GALLERY */
+
+.color-gallery {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height .8s ease,
+    opacity .5s ease,
+    margin-top .8s ease;
+
+  margin-top: 0;
+}
+
+.color-gallery.active {
+  max-height: 1000px;
+  opacity: 1;
+  margin-top: 60px;
+}
+
+.gallery-content {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 50px 30px;
+  background: #f8f3e9;
+  border: 1px solid #ddd2bd;
+}
+
+.gallery-label {
+  text-align: center;
+  letter-spacing: 4px;
+  font-size: 12px;
+  color: #b08a4b;
+  margin-bottom: 10px;
+}
+
+.gallery-content h2 {
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: 38px;
+  font-weight: normal;
+  color: #303b21;
+  margin-bottom: 35px;
+}
+
+
+/* PHOTO GRID */
+
+.gallery-photos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.gallery-photos img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+
+/* CLOSE BUTTON */
+
+.close-gallery {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+
+  border: none;
+  background: none;
+
+  font-size: 32px;
+  font-weight: 300;
+  color: #303b21;
+
+  cursor: pointer;
+}
+
+.close-gallery:hover {
+  opacity: .6;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+  .color-circle {
+    width: 52px;
+    height: 52px;
+  }
+
+  .gallery-photos {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-photos img {
+    height: 350px;
+  }
+
+  .gallery-content h2 {
+    font-size: 30px;
+  }
+}
+
+.qr-code {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin: 10px auto;
+    display: block;
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#home" class="logo">A | M</a>
+  <div class="navlinks">
+    <a href="#story">Our Story</a><a href="#details">Details</a><a href="#rsvp">RSVP</a>
+    <a href="#travel">Travel</a><a href="#gallery">Gallery</a><a href="#gifts">Gifts</a><a href="#faq">FAQ</a>
+  </div>
+  <a href="#rsvp" class="navbtn">RSVP NOW →</a>
+</nav>
+
+<header id="home" class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">Together with their families</div>
+    <h1>Angelo <span>&amp;</span> Michelle</h1>
+    <div class="eyebrow">Are getting married</div>
+    <div class="date">JUNE 5, 2027</div>
+    <div class="location">ANTIPOLO, RIZAL</div>
+    <a class="btn" href="#rsvp">RSVP NOW →</a>
+    <div class="scroll">↓ SCROLL TO EXPLORE</div>
+  </div>
+</header>
+
+<section id="story" class="story">
+ <div class="story-wrap">
+  <div class="story-copy">
+   <div class="section-label">Our Story</div>
+   <h2>It started<br>with a hello...</h2>
+   <p>From simple conversations to a lifetime of adventures, here we are — ready for our greatest one yet.</p>
+  </div>
+  <div class="timeline">
+   <div class="milestone"><div class="circle"></div><div class="caption">The first hello</div></div>
+   <div class="milestone"><div class="circle"></div><div class="caption">The adventure begins</div></div>
+   <div class="milestone"><div class="circle"></div><div class="caption">The question was asked</div></div>
+   <div class="milestone"><div class="circle"></div><div class="caption">Forever starts here</div></div>
+  </div>
+ </div>
+</section>
+
+<section id="details" class="details">
+ <div class="section-label">Wedding Details</div>
+ <h2 class="section-title">We can't wait to celebrate with you!</h2>
+ <div class="cards">
+  <div class="card"><div class="icon">⚘</div><h3>Ceremony</h3><p><strong>3:30 PM</strong><br>Jardin de Miramar, PARADISO<br>Antipolo, Rizal</p></div>
+  <div class="card"><div class="icon">☘</div><h3>Reception</h3><p><strong>6:00 PM</strong><br>Jardin de Miramar, CAFE LEONITA <br>Antipolo, Rizal</p></div>
+  <div class="card"><div class="icon">⚜</div><h3>Dress Code</h3><p><strong>Formal / Garden Formal</strong></p>
+  <div id="colorChoices" class="colors" >
+	<button class="swatch burgundy" onclick="showGallery('burgundy')" aria-label="Show burgundy photos"></button>
+	<button class="swatch garnet" onclick="showGallery('garnet')" aria-label="Show garnet photos"></button>
+	<button class="swatch olive" onclick="showGallery('olive')" aria-label="Show olive photos"></button>
+	<button class="swatch moss" onclick="showGallery('moss')" aria-label="Show moss photos"></button>
+	<button class="swatch ivory" onclick="showGallery('ivory')" aria-label="Show ivory photos"></button>
+	</div>
+	<p>We'd love to see you in our wedding colors.</p></div>
+ </div>
+ <div id="colorGallery" class="color-gallery">
+  <div class="gallery-content">
+    <button class="close-gallery" onclick="closeGallery()">×</button>
+    <p class="gallery-label">OUR WEDDING COLORS</p>
+    <h2 id="galleryTitle">Burgundy</h2>
+    <div id="galleryPhotos" class="gallery-photos"></div>
+  </div>
+
+</div>
+</section>
+
+<section id="rsvp" class="rsvp">
+ <div class="rsvp-wrap">
+  <div class="rsvp-copy">
+   <div class="section-label" style="text-align:left;color:#c9b27c">RSVP</div>
+   <h2>Will you<br>celebrate with us?</h2>
+   <p>Please RSVP by <strong>December 18, 2027</strong>.</p>
+   <p>Your response will help us prepare for a more meaningful and enjoyable celebration.</p>
+  </div>
+  <div class="formbox">
+   <form id="rsvpForm">
+    <div class="row">
+      <div><label>Full Name *</label><input required name="name" placeholder="Juan Dela Cruz"></div>
+    </div>
+    <div><label>Are you attending? *</label><div class="radio"><label><input type="radio" name="attending" value="yes" checked> Joyfully accepts</label><label><input type="radio" name="attending" value="no"> Regretfully declines</label></div></div>
+    <button class="btn" type="submit">CONFIRM RSVP →</button>
+    <div id="formMessage" class="form-message">Thank you! Your RSVP has been received. 💕</div>
+   </form>
+  </div>
+ </div>
+</section>
+
+<section id="travel" class="travel">
+ <div class="section-label">Travel & Accommodation</div><h2 class="section-title">For our guests coming from afar</h2>
+ <div class="travel-grid">
+  <div class="card"><h3>📍 Venue</h3><p><strong>Jardin de Miramar</strong><br>Antipolo, Rizal</p><a class="btn" href="https://www.google.com/maps/place/Jardin+de+Miramar+Events+Venue/@14.5936692,121.176623,17z/data=!3m1!4b1!4m6!3m5!1s0x3397bf4e3742c851:0x3d82d7645c74b22!8m2!3d14.593664!4d121.1791979!16s%2Fg%2F1td5tpdy?entry=ttu&g_ep=EgoyMDI2MDkyMy4wIKXMDSoASAFQAw%3D%3D" target="_blank">OPEN MAP →</a></div>
+  <div class="card"><h3>🏨 Where to Stay</h3><p>Hiraya Antipolo Vacation Home Villa - 16 mins <br>Hermanas Events Place Resort — 30 mins<br>Villa on the Raxx Resort - 38 mins</p></div>
+  <div class="card"><h3>🚗 Getting There</h3><p><strong>Private Vehicle</strong><br>Parking available at the venue.</p><p><strong>Grab / Taxi</strong><br>Drop-off at PARADISO Venue</p></div>
+ </div>
+</section>
+
+<section id="gallery">
+ <div class="section-label">Photo Gallery</div><h2 class="section-title">A few of our favorite moments</h2>
+ <div class="gallery"><div class="g1"></div><div class="g2"></div><div class="g3"></div><div class="g4"></div><div class="g5"></div></div>
+</section>
+
+<section id="gifts" class="gifts">
+ <div class="giftbox">
+  <div class="section-label">Gifts</div><h2 class="section-title">Your presence is our greatest gift.</h2>
+  <p>Should you wish to bless us with a gift, we've prepared the following options.</p>
+  <div class="gift-options">
+   <div class="gift-bpi">🏦<h2><strong>Bank Transfer</strong></h2><img src="./Photos/bpi.png" alt="BPI QR Code" class="qr-code"</div> 
+  </div>
+  <div class="gift-options">  
+    <div class="gift-maya">📱<h2><strong>Maya</strong></h2><img src="./Photos/maya.jpg" alt="Maya QR Code" class="qr-code"</div>
+ </div>
+ </div>
+</section>
+
+<section id="faq">
+ <div class="section-label">Frequently Asked Questions</div><h2 class="section-title">We hope this helps!</h2>
+ <div class="faq">
+  <div class="faq-item"><div class="faq-q">Can I bring a plus one? <span>+</span></div><div class="faq-a">Please refer to the number of seats indicated on your invitation.</div></div>
+  <div class="faq-item"><div class="faq-q">Are children invited? <span>+</span></div><div class="faq-a">Please check your invitation or contact us if you're unsure.</div></div>
+  <div class="faq-item"><div class="faq-q">What should I wear? <span>+</span></div><div class="faq-a">Formal or Garden Formal. Magenta, olive, ivory, and champagne accents are welcome.</div></div>
+  <div class="faq-item"><div class="faq-q">What time should I arrive? <span>+</span></div><div class="faq-a">We recommend arriving 30 minutes before the ceremony.</div></div>
+  <div class="faq-item"><div class="faq-q">Is parking available? <span>+</span></div><div class="faq-a">Yes. Parking information will be provided closer to the wedding date.</div></div>
+ </div>
+</section>
+
+<div class="countdown">
+ <div class="section-label" style="color:#c9b27c">Until we say I do...</div>
+ <div class="timer">
+  <div class="time"><strong id="days">0</strong><span>DAYS</span></div>
+  <div class="time"><strong id="hours">0</strong><span>HOURS</span></div>
+  <div class="time"><strong id="minutes">0</strong><span>MINUTES</span></div>
+  <div class="time"><strong id="seconds">0</strong><span>SECONDS</span></div>
+ </div>
+</div>
+
+<footer>
+ <div class="section-label">With Love</div>
+ <h2>Angelo & Michelle</h2>
+ <p>June 5, 2027 · Antipolo, Rizal</p>
+ <a class="btn" href="#rsvp">RSVP NOW →</a>
+</footer>
+
+<script>
+const weddingDate = new Date("June 5, 2027 16:00:00").getTime();
+const galleries = { 
+
+  burgundy: {
+    title: "Burgundy",
+    photos: [
+      "./photos/burgundy-1.jpg",
+      "./photos/burgundy-2.jpg",
+      "./photos/burgundy-3.jpg"
+    ]
+  },
+
+  garnet: {
+    title: "Garnet",
+    photos: [
+      "./photos/garnet-1.jpg",
+      "./photos/garnet-2.jpg",
+      "./photos/garnet-3.jpg"
+    ]
+  },
+
+  olive: {
+    title: "Olive Green",
+    photos: [
+      "./photos/olive-1.jpg",
+      "./photos/olive-2.jpg",
+      "./photos/olive-3.jpg"
+    ]
+  },
+
+  moss: {
+    title: "Moss Green",
+    photos: [
+      "./photos/moss-1.jpg",
+      "./photos/moss-2.jpg",
+      "./photos/moss-3.jpg"
+    ]
+  },
+
+  ivory: {
+    title: "Ivory",
+    photos: [
+      "./photos/ivory-1.jpg",
+      "./photos/ivory-2.jpg",
+      "./photos/ivory-3.jpg"
+    ]
+  }
+
+};
+
+function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    if (distance <= 0) {
+        document.getElementById("days").textContent = "0";
+        document.getElementById("hours").textContent = "0";
+        document.getElementById("minutes").textContent = "0";
+        document.getElementById("seconds").textContent = "0";
+        return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    const minutes = Math.floor(
+        (distance % (1000 * 60 * 60)) / (1000 * 60)
+    );
+    const seconds = Math.floor(
+        (distance % (1000 * 60)) / 1000
+    );
+
+    document.getElementById("days").textContent = days;
+    document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+    document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+    document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+document.querySelectorAll(".faq-q").forEach(q=>q.addEventListener("click",()=>{
+ const a=q.nextElementSibling, open=a.style.display==="block";
+ document.querySelectorAll(".faq-a").forEach(x=>x.style.display="none");
+ document.querySelectorAll(".faq-q span").forEach(x=>x.textContent="+");
+ if(!open){a.style.display="block";q.querySelector("span").textContent="−";}
+}));
+
+document.getElementById("rsvpForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ document.getElementById("formMessage").style.display="block";
+ e.target.querySelector("button").textContent="RSVP RECEIVED ✓";
+});
+
+function showGallery(color) {
+
+  const gallery = document.getElementById("colorGallery");
+  const title = document.getElementById("galleryTitle");
+  const photos = document.getElementById("galleryPhotos");
+
+  const selected = galleries[color];
+
+  title.textContent = selected.title;
+
+  photos.innerHTML = "";
+
+  selected.photos.forEach(photo => {
+
+    const img = document.createElement("img");
+
+    img.src = photo;
+    img.alt = selected.title + " wedding inspiration";
+
+    photos.appendChild(img);
+
+  });
+  gallery.classList.add("active");
+  
+  setTimeout(() => {
+    gallery.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }, 100);
+}
+
+
+function closeGallery() {
+  const gallery = document.getElementById("colorGallery");
+  const choices = document.getElementById("colorChoices");
+  
+  //Close the gallery
+  gallery.classList.remove("active");
+  
+    //Scroll back to color choices
+  setTimeout(() => {
+	choices.scrollIntoView({
+		behavior: "smooth",
+		block: "center"
+	});
+  }, 400);
+
+}
+</script>
+</body>
+</html>
