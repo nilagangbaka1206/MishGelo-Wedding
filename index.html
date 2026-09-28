@@ -597,7 +597,7 @@ footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{fon
                 <input
                     type="text"
                     id="inviteCode"
-                    placeholder="e.g. ANG001"
+                    placeholder="e.g. MG001"
                     autocomplete="off"
                 >
                 <button
@@ -969,7 +969,7 @@ function createGuestFields() {
 
 /* SUBMIT */
 
-function submitRSVP() {
+async function submitRSVP() {
 
     const selected =
         document.querySelector(
@@ -1168,12 +1168,6 @@ document.querySelectorAll(".faq-q").forEach(q=>q.addEventListener("click",()=>{
  document.querySelectorAll(".faq-q span").forEach(x=>x.textContent="+");
  if(!open){a.style.display="block";q.querySelector("span").textContent="−";}
 }));
-
-document.getElementById("rsvpForm").addEventListener("submit",e=>{
- e.preventDefault();
- document.getElementById("formMessage").style.display="block";
- e.target.querySelector("button").textContent="RSVP RECEIVED ✓";
-});
 
 function showGallery(color) {
 
