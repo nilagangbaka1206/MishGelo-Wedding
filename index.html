@@ -56,17 +56,6 @@ section{padding:90px 7%;position:relative}
 .icon{font-size:30px;color:var(--olive);margin-bottom:10px}
 .card h3{font-size:22px;margin:6px}.card p{line-height:1.7;font-size:14px;color:#666}
 .colors{display:flex;justify-content:center;gap:8px;margin-top:12px}.swatch{width:50px;height:50px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #aaa}.burgundy{background:#5A1F30}.garnet{background:#7A1E33}.olive{background:#435525}.moss{background:#4F5A32}.ivory{background:#F8F2E6}
-.rsvp{background:var(--olive-dark);color:white}
-.rsvp-wrap{max-width:1100px;margin:auto;display:grid;grid-template-columns:.8fr 1.2fr}
-.rsvp-copy{padding:55px;background:var(--olive-dark)}
-.rsvp-copy h2{font-size:58px;line-height:.85;margin:15px 0}.rsvp-copy p{color:#d9ddc8;line-height:1.7}
-.formbox{background:var(--paper);color:var(--text);padding:45px}
-form{display:grid;gap:15px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-label{font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:600}
-input,select,textarea{width:100%;margin-top:7px;padding:12px;border:1px solid #d4cbb9;background:white;font:inherit}textarea{min-height:90px;resize:vertical}
-.radio{display:flex;gap:15px;margin-top:8px;font-size:13px}.radio label{text-transform:none;letter-spacing:0;font-weight:400}
-.form-message{display:none;padding:18px;background:#e7edd9;color:var(--olive-dark);text-align:center;margin-top:10px}
 .travel{background:var(--paper)}
 .travel-grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.travel .card{text-align:left}
 .gallery{max-width:1100px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr;grid-auto-rows:230px;gap:8px}.gallery div{background-size:cover;background-position:center}.gallery div:first-child{grid-row:span 2}.gallery div:nth-child(4){grid-column:2/4}
@@ -240,6 +229,273 @@ footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{fon
     display: block;
 }
 
+.rsvp-section {
+    background: #435525;
+    padding: 100px 8%;
+    color: #F8F2E6;
+}
+
+.rsvp-container {
+    max-width: 1100px;
+    margin: auto;
+    background: #F8F2E6;
+    color: #17200f;
+
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+
+
+/* LEFT */
+
+.rsvp-intro {
+    background: #435525;
+    padding: 60px;
+}
+
+.rsvp-intro .eyebrow {
+    color: #D5A24A;
+    font-size: 11px;
+    letter-spacing: 5px;
+}
+
+.rsvp-intro h2 {
+    font-family: Georgia, serif;
+    font-size: clamp(42px, 5vw, 65px);
+    line-height: .95;
+    font-weight: normal;
+    margin: 25px 0;
+}
+
+.rsvp-intro p {
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 360px;
+}
+
+.rsvp-intro .deadline {
+    margin-top: 30px;
+}
+
+.rsvp-intro strong {
+    color: #F8F2E6;
+}
+
+
+/* FORM */
+
+.rsvp-form {
+    padding: 55px;
+}
+
+.rsvp-form label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.rsvp-form input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+
+    border: 1px solid #cfc7b7;
+    background: #fffdf8;
+
+    padding: 16px;
+
+    font-size: 16px;
+    outline: none;
+}
+
+.rsvp-form input[type="text"]:focus {
+    border-color: #7A1E33;
+}
+
+
+.rsvp-button {
+    width: 100%;
+    border: none;
+
+    background: #7A1E33;
+    color: #F8F2E6;
+
+    padding: 17px;
+
+    margin-top: 20px;
+
+    font-size: 11px;
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.rsvp-button:hover {
+    background: #5A1F30;
+}
+
+.rsvp-button:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+
+/* INVITATION */
+
+.welcome {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.welcome > span {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #7A1E33;
+}
+
+.welcome h3 {
+    font-family: Georgia, serif;
+    font-size: 38px;
+    font-weight: normal;
+    margin: 12px 0;
+}
+
+.welcome p {
+    margin: 5px 0;
+}
+
+
+.seat-count {
+    margin: 20px 0;
+}
+
+.seat-count strong {
+    display: block;
+
+    font-family: Georgia, serif;
+    font-size: 55px;
+
+    color: #7A1E33;
+}
+
+.seat-count span {
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+
+
+/* ATTENDANCE */
+
+.attendance {
+    display: flex;
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.attendance-option {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 13px !important;
+    letter-spacing: 0 !important;
+
+    cursor: pointer;
+}
+
+.attendance-option input {
+    accent-color: #7A1E33;
+}
+
+
+/* GUEST NAMES */
+
+.guest-names {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid #d8d0c1;
+}
+
+.guest-names h4 {
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.guest-names p {
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.guest-field {
+    margin-bottom: 15px;
+}
+
+
+/* SUCCESS */
+
+.success-message {
+    text-align: center;
+    padding: 40px 10px;
+}
+
+.success-symbol {
+    font-size: 55px;
+    color: #7A1E33;
+}
+
+.success-message h3 {
+    font-family: Georgia, serif;
+    font-size: 40px;
+    font-weight: normal;
+}
+
+
+/* UTILITIES */
+
+.hidden {
+    display: none !important;
+}
+
+.error-message {
+    color: #7A1E33;
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .rsvp-section {
+        padding: 40px 20px;
+    }
+
+    .rsvp-container {
+        grid-template-columns: 1fr;
+    }
+
+    .rsvp-intro {
+        padding: 40px 30px;
+    }
+
+    .rsvp-intro h2 {
+        font-size: 48px;
+    }
+
+    .rsvp-form {
+        padding: 35px 25px;
+    }
+
+    .attendance {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+}
 </style>
 </head>
 <body>
@@ -309,25 +565,126 @@ footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{fon
 </div>
 </section>
 
-<section id="rsvp" class="rsvp">
- <div class="rsvp-wrap">
-  <div class="rsvp-copy">
-   <div class="section-label" style="text-align:left;color:#c9b27c">RSVP</div>
-   <h2>Will you<br>celebrate with us?</h2>
-   <p>Please RSVP by <strong>December 18, 2027</strong>.</p>
-   <p>Your response will help us prepare for a more meaningful and enjoyable celebration.</p>
-  </div>
-  <div class="formbox">
-   <form id="rsvpForm">
-    <div class="row">
-      <div><label>Full Name *</label><input required name="name" placeholder="Juan Dela Cruz"></div>
+<section class="rsvp-section" id="rsvp">
+    <div class="rsvp-container">
+        <!-- LEFT SIDE -->
+        <div class="rsvp-intro">
+            <span class="eyebrow">R S V P</span>
+            <h2 style="text-align:left;color:#F8F2E6">
+                Will you<br>
+                celebrate with<br>
+                us?
+            </h2>
+            <p class="deadline" style="text-align:left;color:#F8F2E6">
+                Please RSVP by <strong>December 18, 2026.</strong>
+            </p>
+            <p style="text-align:left;color:#F8F2E6">
+                Your response will help us prepare
+                for a more meaningful and enjoyable
+                celebration.
+            </p>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="rsvp-form">
+
+            <!-- STEP 1 -->
+            <div id="lookupStep">
+
+                <label for="inviteCode">
+                    INVITATION CODE
+                </label>
+                <input
+                    type="text"
+                    id="inviteCode"
+                    placeholder="e.g. ANG001"
+                    autocomplete="off"
+                >
+                <button
+                    type="button"
+                    class="rsvp-button"
+                    onclick="findInvitation()"
+                >
+                    FIND MY INVITATION →
+                </button>
+                <p id="lookupError" class="error-message"></p>
+            </div>
+
+            <!-- STEP 2 -->
+            <div id="invitationStep" class="hidden">
+                <div class="welcome">
+                    <span>YOU'RE INVITED!</span>
+                    <h3 id="guestName"></h3>
+                    <p>
+                        We have reserved
+                    </p>
+                    <div class="seat-count">
+                        <strong id="seatNumber">0</strong>
+                        <span>SEATS</span>
+                    </div>
+                    <p id="seatMessage"></p>
+                </div>
+                <div class="attendance">
+                    <label class="attendance-option">
+                        <input
+                            type="radio"
+                            name="attendance"
+                            value="yes"
+                            onchange="attendanceChanged()"
+                        >
+                        <span>
+                            Joyfully accepts
+                        </span>
+                    </label>
+                    <label class="attendance-option">
+                        <input
+                            type="radio"
+                            name="attendance"
+                            value="no"
+                            onchange="attendanceChanged()"
+                        >
+                        <span>
+                            Regretfully declines
+                        </span>
+
+                    </label>
+                </div>
+
+                <!-- GUEST NAMES -->
+                <div
+                    id="guestNames"
+                    class="guest-names hidden"
+                >
+                    <h4>
+                        WHO WILL BE JOINING US?
+                    </h4>
+                    <p>
+                        Please enter the names of your guests.
+                    </p>
+                    <div id="guestFields"></div>
+                </div>
+                <button
+                    type="button"
+                    id="confirmButton"
+                    class="rsvp-button"
+                    onclick="submitRSVP()"
+                    disabled
+                >
+                    CONFIRM RSVP →
+                </button>
+            </div>
+
+            <!-- SUCCESS -->
+            <div id="successStep" class="hidden success-message">
+                <div class="success-symbol">♡</div>
+                <h3>Thank you!</h3>
+                <p>
+                    Your RSVP has been received.
+                </p>
+                <p id="successText"></p>
+            </div>
+        </div>
     </div>
-    <div><label>Are you attending? *</label><div class="radio"><label><input type="radio" name="attending" value="yes" checked> Joyfully accepts</label><label><input type="radio" name="attending" value="no"> Regretfully declines</label></div></div>
-    <button class="btn" type="submit">CONFIRM RSVP →</button>
-    <div id="formMessage" class="form-message">Thank you! Your RSVP has been received. 💕</div>
-   </form>
-  </div>
- </div>
 </section>
 
 <section id="travel" class="travel">
@@ -387,6 +744,7 @@ footer{text-align:center;padding:65px 20px;background:var(--cream)}footer h2{fon
 
 <script>
 const weddingDate = new Date("June 5, 2027 16:00:00").getTime();
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyvxluMqaDAa5OlK9cckPm8b1t3L-Nd6e1K9nTGNn8Z_ZxivZSl4n11LPK0tzPV_HX84g/exec";
 const galleries = { 
 
   burgundy: {
@@ -436,6 +794,337 @@ const galleries = {
 
 };
 
+const guests = {
+
+    "ANG001": {
+        name: "Juan Dela Cruz",
+        seats: 2
+    },
+
+    "ANG002": {
+        name: "Maria Santos",
+        seats: 1
+    },
+
+    "ANG003": {
+        name: "Pedro Cruz",
+        seats: 4
+    },
+
+    "ANG004": {
+        name: "Ana Reyes",
+        seats: 1
+    },
+
+    "ANG005": {
+        name: "Carlos Garcia",
+        seats: 3
+    }
+
+};
+
+let currentGuest = null;
+
+/* FIND INVITATION */
+
+function findInvitation() {
+    const codeInput =
+        document.getElementById("inviteCode");
+    const code =
+        codeInput.value.trim().toUpperCase();
+    const error =
+        document.getElementById("lookupError");
+
+    if (!code) {
+        error.textContent =
+            "Please enter your invitation code.";
+        return;
+    }
+
+
+    const guest = guests[code];
+
+    if (!guest) {
+        error.textContent =
+            "We couldn't find that invitation code. Please check and try again.";
+        return;
+    }
+
+    currentGuest = guest;
+
+    error.textContent = "";
+
+    document.getElementById("lookupStep")
+        .classList.add("hidden");
+
+    document.getElementById("invitationStep")
+        .classList.remove("hidden");
+
+    document.getElementById("guestName")
+        .textContent = guest.name;
+
+    document.getElementById("seatNumber")
+        .textContent = guest.seats;
+
+    if (guest.seats === 1) {
+
+        document.getElementById("seatMessage")
+            .textContent =
+            "This invitation is reserved for you.";
+    } else {
+
+        document.getElementById("seatMessage")
+            .textContent =
+            "These seats have been reserved in your honor.";
+    }
+}
+
+
+/* ATTENDANCE */
+
+function attendanceChanged() {
+
+    const selected =
+        document.querySelector('input[name="attendance"]:checked');
+
+    const guestNames =
+        document.getElementById("guestNames");
+
+    const confirmButton =
+        document.getElementById("confirmButton");
+
+
+    if (!selected) {
+        return;
+    }
+
+
+    confirmButton.disabled = false;
+
+    if (selected.value === "yes") {
+        guestNames.classList.remove("hidden");
+        createGuestFields();
+    } else {
+        guestNames.classList.add("hidden");
+    }
+}
+
+
+/* CREATE GUEST FIELDS */
+
+function createGuestFields() {
+
+    const container =
+        document.getElementById("guestFields");
+
+    container.innerHTML = "";
+
+    /*
+       First guest is the person
+       who owns the invitation.
+
+       Therefore we only ask for
+       the additional guests.
+    */
+
+    const plusOnes =
+        currentGuest.seats - 1;
+
+
+    for (let i = 1; i <= plusOnes; i++) {
+        const wrapper =
+            document.createElement("div");
+
+        wrapper.className =
+            "guest-field";
+
+        const label =
+            document.createElement("label");
+
+        label.textContent =
+            "GUEST " + (i + 1);
+
+        const input =
+            document.createElement("input");
+
+        input.type = "text";
+
+        input.className =
+            "guest-name-input";
+
+        input.placeholder =
+            "Full name";
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        container.appendChild(wrapper);
+    }
+}
+
+
+/* SUBMIT */
+
+function submitRSVP() {
+
+    const selected =
+        document.querySelector(
+            'input[name="attendance"]:checked'
+        );
+
+    if (!selected) {
+        return;
+    }
+
+    const attending =
+        selected.value === "yes";
+
+    let guestNames = [];
+
+    if (attending) {
+
+        const inputs =
+            document.querySelectorAll(
+                ".guest-name-input"
+            );
+
+        for (const input of inputs) {
+
+            const name =
+                input.value.trim();
+
+
+            if (!name) {
+                alert(
+                    "Please enter the name of each guest."
+                );
+				
+                input.focus();
+
+                return;
+            }
+
+            guestNames.push(name);
+
+        }
+
+    }
+	
+	const code =
+        document.getElementById("inviteCode")
+            .value
+            .trim()
+            .toUpperCase();
+			
+	const data = {
+        code: code,
+        guest: currentGuest.name,
+        seats: currentGuest.seats,
+        attending: attending,
+        guestNames: guestNames
+    };
+	
+	const button =
+        document.getElementById("confirmButton");
+		
+		button.disabled = true;
+
+    button.textContent =
+        "SENDING...";
+
+    try {
+        await fetch(
+            GOOGLE_SCRIPT_URL,
+            {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type":
+                        "text/plain;charset=utf-8"
+                },
+                body: JSON.stringify(data)
+            }
+        );
+
+        showSuccess(attending);
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "There was a problem submitting your RSVP. Please try again."
+        );
+
+        button.disabled = false;
+
+        button.textContent =
+            "CONFIRM RSVP →";
+
+    }
+}
+
+    /*
+       At this point the RSVP data is:
+
+       currentGuest.name
+       currentGuest.seats
+       attending
+       guestNames
+
+       This is where we will connect
+       Google Sheets.
+    */
+
+    console.log({
+
+        invitationCode:
+            document.getElementById("inviteCode").value,
+
+        guest:
+            currentGuest.name,
+
+        seats:
+            currentGuest.seats,
+
+        attending:
+            attending,
+
+        guestNames:
+            guestNames
+
+    });
+
+    showSuccess(attending);
+
+}
+/* SUCCESS */
+
+function showSuccess(attending) {
+
+    document.getElementById("invitationStep")
+        .classList.add("hidden");
+
+
+    document.getElementById("successStep")
+        .classList.remove("hidden");
+
+
+    const text =
+        document.getElementById("successText");
+
+
+    if (attending) {
+
+        text.textContent =
+            "We look forward to celebrating with you!";
+
+    } else {
+
+        text.textContent =
+            "Thank you for letting us know. You will be missed!";
+
+    }
+
+}
 function updateCountdown() {
     const now = new Date().getTime();
     const distance = weddingDate - now;
